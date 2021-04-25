@@ -51,7 +51,16 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please join being human!", Toast.LENGTH_SHORT).show()
             }
         }
+
+        createAccountButton.setOnClickListener {
+            var intent : Intent = Intent(this,CreateAccountActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+
     }
+
 
     private fun checkIfUserAlreadyLoggedIn() {
         val credentials : Pair<String, String>? = getEmailAndPassword(this)
