@@ -17,12 +17,21 @@ val postsUrl : ArrayList<String> = ArrayList<String>().apply {
 
 
 /**
- * Demo function for reference purposes
+ * Demo functions for reference purposes
  */
+
 fun demo() {
     //create account k through
     val ankitKiProfile : Profile = Profile(name = "", email = "")
 
     //login account k through
     val abhishekKiProfile : Profile = Profile(email = "")
+}
+
+fun getUserProfile(name: String, email: String) : Profile {
+    return Profile(name = name, email = email)
+}
+
+fun getUserProfile(email: String) : Profile {
+    return Profile(email = email)
 }
