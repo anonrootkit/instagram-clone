@@ -14,13 +14,11 @@ import com.example.instagramclone.ui.utils.storeEmailAndPassword
 class LoginActivity : AppCompatActivity() {
 
 
-    private lateinit var emailBox : EditText
-    private lateinit var passwordBox : EditText
-    private lateinit var signInButton : Button
-    private lateinit var createAccountButton: Button
-    private lateinit var forgotPassword : TextView
-    private lateinit var signInSwitch : SwitchCompat
-    private lateinit var thumbnail : ImageView
+    private lateinit var emailBox: EditText
+    private lateinit var passwordBox: EditText
+    private lateinit var signInButton: Button
+    private lateinit var createAccountButton: TextView
+    private lateinit var forgotPassword: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,31 +29,26 @@ class LoginActivity : AppCompatActivity() {
         checkIfUserAlreadyLoggedIn()
 
         signInButton.setOnClickListener {
-            val emailString : String = emailBox.text.toString()
-            val passwordString : String = passwordBox.text.toString()
-            val areYouHuman : Boolean = signInSwitch.isChecked
+            val emailString: String = emailBox.text.toString()
+            val passwordString: String = passwordBox.text.toString()
 
 
-            if (areYouHuman){
-                if (checkEmailValidUsingRegex(emailString)){
-                    if (checkPasswordValidUsingRegex(passwordString)){
-                        val signInSuccessful : Boolean = true
-                        onSignIn(signInSuccessful, emailString, passwordString)
-                    }else{
-                        Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
-                    }
-                }else{
-                    Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
+            if (checkEmailValidUsingRegex(emailString)) {
+                if (checkPasswordValidUsingRegex(passwordString)) {
+                    val signInSuccessful: Boolean = true
+                    onSignIn(signInSuccessful, emailString, passwordString)
+                } else {
+                    Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
                 }
-            }else{
-                Toast.makeText(this, "Please join being human!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(this, "Invalid Email", Toast.LENGTH_SHORT).show()
             }
         }
 
+
         createAccountButton.setOnClickListener {
-            var intent : Intent = Intent(this,CreateAccountActivity::class.java)
+            var intent: Intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
-            finish()
 
         }
 
@@ -63,30 +56,28 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun checkIfUserAlreadyLoggedIn() {
-        val credentials : Pair<String, String>? = getEmailAndPassword(this)
+        val credentials: Pair<String, String>? = getEmailAndPassword(this)
 
-        if (credentials != null){
+        if (credentials != null) {
             onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second)
         }
     }
 
-    private fun initViews(){
+    private fun initViews() {
         emailBox = findViewById(R.id.email)
         passwordBox = findViewById(R.id.password)
         signInButton = findViewById(R.id.sign_in_button)
         createAccountButton = findViewById(R.id.create_account_button)
         forgotPassword = findViewById(R.id.forgot_password)
-        signInSwitch = findViewById(R.id.sign_in_switch)
-        thumbnail = findViewById(R.id.thumbnail)
     }
 
-    private fun onSignIn(signInSuccessful : Boolean, emailString : String, passwordString : String) {
-        if (signInSuccessful){
+    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String) {
+        if (signInSuccessful) {
             storeEmailAndPassword(this, emailString, passwordString)
 
-            val openHomeActivityIntent : Intent = Intent(this, HomeActivity::class.java)
+            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
 
-            val bundle : Bundle = Bundle()
+            val bundle: Bundle = Bundle()
             bundle.putString("email_text", emailString)
             bundle.putString("password_text", passwordString)
 
@@ -97,7 +88,7 @@ class LoginActivity : AppCompatActivity() {
 
             Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
 
-        }else{
+        } else {
             Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
         }
     }

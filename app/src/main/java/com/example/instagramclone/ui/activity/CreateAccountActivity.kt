@@ -3,10 +3,7 @@ package com.example.instagramclone.ui.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Spinner
-import android.widget.Toast
+import android.widget.*
 import com.example.instagramclone.R
 import com.example.instagramclone.ui.utils.*
 
@@ -18,8 +15,8 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var emailBox: EditText
     private lateinit var passwordBox: EditText
     private lateinit var createAccountButton: Button
-    private lateinit var signInButton: Button
-    private lateinit var statesSpinner: Spinner
+    private lateinit var signInButton: TextView
+//    private lateinit var statesSpinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +49,6 @@ class CreateAccountActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             val firstActivityIntent: Intent = Intent(this, LoginActivity::class.java)
             startActivity(firstActivityIntent)
-            finish()
         }
 
 
@@ -68,16 +64,16 @@ class CreateAccountActivity : AppCompatActivity() {
         passwordBox = findViewById(R.id.password)
         createAccountButton = findViewById(R.id.create_account_button)
         signInButton = findViewById(R.id.sign_in_button)
-        statesSpinner = findViewById(R.id.spinner)
+//        statesSpinner = findViewById(R.id.spinner)
 
-        initialiseSpinner(
-            context = this,
-            spinner = statesSpinner,
-            values = statesList,
-            functionOnItemSelected = { position ->
-                Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
-            }
-        )
+//        initialiseSpinner(
+//            context = this,
+//            spinner = statesSpinner,
+//            values = statesList,
+//            functionOnItemSelected = { position ->
+//                Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
+//            }
+//        )
 
 
     }
