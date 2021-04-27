@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".FirstActivity">
+    >
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:padding="24dp"
-            android:text="Create account"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+
+        <ImageView
+            android:layout_marginTop="40dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/user"
+            android:layout_gravity="center_horizontal"
+            android:id="@+id/userimage"
+            />
 
         <EditText
             android:id="@+id/name"
@@ -29,6 +28,8 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+            android:padding="16dp"
+            android:background="@drawable/border"
             android:hint="Name"
             android:inputType="text" />
 
@@ -39,6 +40,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
+
+            android:padding="16dp"
+            android:background="@drawable/border"
             android:hint="Email"
             android:inputType="textEmailAddress" />
 
@@ -50,16 +54,11 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="24dp"
             android:hint="Password"
+
+            android:padding="16dp"
+            android:background="@drawable/border"
             android:inputType="textPassword" />
 
-        <include
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginTop="24dp"
-            layout="@layout/spinner_layout"
-            />
 
         <Button
             android:id="@+id/create_account_button"
@@ -70,12 +69,14 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="24dp"
             android:text="Create account"
+            app:backgroundTint="#0195F7"
             android:background="@drawable/round_shape"
             android:layout_marginBottom="16dp"
             android:textSize="16sp" />
 
 
         <RelativeLayout
+            android:layout_marginTop="40dp"
             android:id="@+id/or_label_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -111,18 +112,48 @@
 
         </RelativeLayout>
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:text="Sign In"
-            android:id="@+id/sign_in_button"
-            android:background="@drawable/round_shape"
-            app:backgroundTint="@color/teal_200"
-            android:textColor="@color/white" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/accounttext"
+                android:background="@color/cardview_shadow_start_color"
+                />
+
+            <TextView
+                android:id="@+id/accounttext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Already have an account? "
+                android:textColor="#949494" />
+
+            <TextView
+                android:id="@+id/sign_in_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_toEndOf="@+id/accounttext"
+                android:layout_centerInParent="true"
+                android:text="Log In"
+                android:textColor="#0195F7" />
+
+
+        </RelativeLayout>
     </LinearLayout>
 
-</ScrollView>

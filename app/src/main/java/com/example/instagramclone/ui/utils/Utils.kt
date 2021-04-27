@@ -178,3 +178,13 @@ data class User(
     val userName : String,
     val profilePic : String
 )
+
+
+
+
+val languagelist  : ArrayList<String> = ArrayList<String>().apply{
+    add("English")
+    add("Hindi")
+    add("Tamil")
+    add("Marathi")
+}
