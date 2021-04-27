@@ -8,9 +8,8 @@ import android.widget.*
 import com.example.instagramclone.R
 import com.example.instagramclone.ui.utils.getEmailAndPassword
 import com.example.instagramclone.ui.utils.languagelist
-import kotlin.math.log
 
-class StartingpageActivity : AppCompatActivity() {
+class WelcomeActivity : AppCompatActivity() {
 
     private lateinit var createraccount : Button
     private lateinit var login : TextView
@@ -20,7 +19,7 @@ class StartingpageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_startingpage)
+        setContentView(R.layout.activity_welcome)
 
         checkIfUserAlreadyLoggedIn()
 
@@ -40,7 +39,7 @@ class StartingpageActivity : AppCompatActivity() {
 
             override fun onItemSelected(parent: AdapterView<*>?,view: View?,position: Int,id: Long) {
                 val selectedLanguage = languagelist[position]
-                Toast.makeText(this@StartingpageActivity ,"$selectedLanguage", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@WelcomeActivity ,"$selectedLanguage", Toast.LENGTH_SHORT).show()
 
 
             }
