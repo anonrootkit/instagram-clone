@@ -49,7 +49,6 @@ class LoginActivity : AppCompatActivity() {
         createAccountButton.setOnClickListener {
             var intent: Intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(intent)
-            finish()
 
         }
 

@@ -49,7 +49,6 @@ class CreateAccountActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             val firstActivityIntent: Intent = Intent(this, LoginActivity::class.java)
             startActivity(firstActivityIntent)
-            finish()
         }
 
 

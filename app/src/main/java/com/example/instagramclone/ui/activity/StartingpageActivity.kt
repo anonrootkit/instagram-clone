@@ -51,13 +51,11 @@ class StartingpageActivity : AppCompatActivity() {
         createraccount.setOnClickListener {
             val createraccountIntent : Intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(createraccountIntent)
-            finish()
         }
 
         login.setOnClickListener {
             val loginIntent : Intent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
-            finish()
         }
 
 
