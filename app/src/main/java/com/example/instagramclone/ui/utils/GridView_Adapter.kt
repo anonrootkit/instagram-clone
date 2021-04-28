@@ -21,7 +21,7 @@ class ArrayAdapter_GridView(context : Context, values: ArrayList<Post>) : ArrayA
             view = LayoutInflater.from(parent.context).inflate(R.layout.gridview, parent, false)
         }
 
-        var post_in_GridView : ImageView = view!!.findViewById(R.id.gridView_userProfile)
+        var post_in_GridView : ImageView = view!!.findViewById(R.id.user_post)
 
         var post : Post = getItem(position)!!
 

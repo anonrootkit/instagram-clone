@@ -5,6 +5,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.instagramclone.R
+import com.example.instagramclone.ui.utils.ArrayAdapter_GridView
+import com.example.instagramclone.ui.utils.post
+import com.example.instagramclone.ui.utils.postList
 
 class UserProfieActivity : AppCompatActivity() {
 
@@ -12,7 +15,7 @@ class UserProfieActivity : AppCompatActivity() {
     private lateinit var userPic : ImageView
     private lateinit var name : TextView
     private lateinit var bio : TextView
-    private lateinit var post : GridView
+    private lateinit var post_in_gridview : GridView
 
 //    private lateinit var followingButton : Button
 //    private lateinit var messageButton : Button
@@ -20,7 +23,6 @@ class UserProfieActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profie)
-
         initaliseView()
 
         val information_from_loginpage : Bundle =intent.extras!!
@@ -28,9 +30,8 @@ class UserProfieActivity : AppCompatActivity() {
 
         username.text=emailString
 
-
-
-
+        var adapter_obj : ArrayAdapter_GridView = ArrayAdapter_GridView(this, post)
+        post_in_gridview.adapter=adapter_obj
 
     }
 
@@ -39,7 +40,8 @@ class UserProfieActivity : AppCompatActivity() {
         userPic=findViewById(R.id.userPic_userProfile)
         name=findViewById(R.id.name_userProfile)
         bio=findViewById(R.id.bio_userProfile)
-        post=findViewById(R.id.gridView_userProfile)
+        post_in_gridview=findViewById(R.id.gridView_userProfile)
+
 
     }
 }

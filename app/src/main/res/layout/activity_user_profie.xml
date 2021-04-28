@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_round"
         android:id="@+id/userPic_userProfile"
-        android:layout_below="@+id/username_userProfile"
+        android:layout_below="@id/username_userProfile"
         />
 
     <TextView
@@ -32,8 +32,8 @@
         android:textSize="16dp"
         android:text="posts"
         android:id="@+id/noOfPost_userProfile"
-        android:layout_toEndOf="@+id/userPic_userProfile"
-        android:layout_below="@+id/username_userProfile"
+        android:layout_toEndOf="@id/userPic_userProfile"
+        android:layout_below="@id/username_userProfile"
         android:layout_marginTop="40dp"
         android:layout_marginStart="50dp"
 
@@ -46,8 +46,8 @@
         android:textSize="16sp"
         android:text="followers"
         android:id="@+id/followers_userProfile"
-        android:layout_toEndOf="@+id/noOfPost_userProfile"
-        android:layout_below="@+id/username_userProfile"
+        android:layout_toEndOf="@id/noOfPost_userProfile"
+        android:layout_below="@id/username_userProfile"
         android:layout_marginTop="40dp"
         android:layout_marginStart="40dp"
 
@@ -59,8 +59,8 @@
         android:textSize="16sp"
         android:text="Following"
         android:id="@+id/following_userprofile"
-        android:layout_toEndOf="@+id/followers_userProfile"
-        android:layout_below="@+id/username_userProfile"
+        android:layout_toEndOf="@id/followers_userProfile"
+        android:layout_below="@id/username_userProfile"
         android:layout_marginTop="40dp"
         android:layout_marginStart="40dp"
         />
@@ -70,7 +70,7 @@
         android:layout_height="wrap_content"
         android:text="Name of user"
         android:id="@+id/name_userProfile"
-        android:layout_below="@+id/userPic_userProfile"
+        android:layout_below="@id/userPic_userProfile"
         android:textSize="24sp"
         />
 
@@ -80,7 +80,7 @@
         android:text="bio of user in profile"
         android:textSize="16sp"
         android:id="@+id/bio_userProfile"
-        android:layout_below="@+id/name_userProfile"
+        android:layout_below="@id/name_userProfile"
         />
 
     <Button
@@ -89,7 +89,7 @@
         android:text="Following"
         android:textAllCaps="false"
         android:id="@+id/followingButton_userProfile"
-        android:layout_below="@+id/bio_userProfile"
+        android:layout_below="@id/bio_userProfile"
         android:layout_marginTop="24dp"
         android:layout_marginStart="24dp"
         />
@@ -99,25 +99,24 @@
         android:text="Message"
         android:textAllCaps="false"
         android:id="@+id/messagebutton_userProfile"
-        android:layout_below="@+id/bio_userProfile"
-        android:layout_toEndOf="@+id/followingButton_userProfile"
+        android:layout_below="@id/bio_userProfile"
+        android:layout_toEndOf="@id/followingButton_userProfile"
         android:layout_marginTop="24dp"
         android:layout_marginStart="40dp"
         />
 
-    <view
+    <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
-        android:layout_below="@+id/followingButton_userProfile"
+        android:layout_below="@id/followingButton_userProfile"
         android:id="@+id/seperationbar_userProfile"
-
         />
 
     <GridView
         android:id="@+id/gridView_userProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/seperationbar_userProfile"
+        android:layout_below="@id/seperationbar_userProfile"
         android:numColumns="3" />
 
 
