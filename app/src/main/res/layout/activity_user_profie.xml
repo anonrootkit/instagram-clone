@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activity.UserProfieActivity"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="this how user name look like"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:id="@+id/username_userProfile"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher_round"
+        android:id="@+id/userPic_userProfile"
+        android:layout_below="@+id/username_userProfile"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:text="posts"
+        android:id="@+id/noOfPost_userProfile"
+        android:layout_toEndOf="@+id/userPic_userProfile"
+        android:layout_below="@+id/username_userProfile"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="50dp"
+
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="followers"
+        android:id="@+id/followers_userProfile"
+        android:layout_toEndOf="@+id/noOfPost_userProfile"
+        android:layout_below="@+id/username_userProfile"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:text="Following"
+        android:id="@+id/following_userprofile"
+        android:layout_toEndOf="@+id/followers_userProfile"
+        android:layout_below="@+id/username_userProfile"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="40dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name of user"
+        android:id="@+id/name_userProfile"
+        android:layout_below="@+id/userPic_userProfile"
+        android:textSize="24sp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="bio of user in profile"
+        android:textSize="16sp"
+        android:id="@+id/bio_userProfile"
+        android:layout_below="@+id/name_userProfile"
+        />
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Following"
+        android:textAllCaps="false"
+        android:id="@+id/followingButton_userProfile"
+        android:layout_below="@+id/bio_userProfile"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        />
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:textAllCaps="false"
+        android:id="@+id/messagebutton_userProfile"
+        android:layout_below="@+id/bio_userProfile"
+        android:layout_toEndOf="@+id/followingButton_userProfile"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="40dp"
+        />
+
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/followingButton_userProfile"
+        android:id="@+id/seperationbar_userProfile"
+
+        />
+
+    <GridView
+        android:id="@+id/gridView_userProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seperationbar_userProfile"
+        android:numColumns="3" />
+
+
+</RelativeLayout>

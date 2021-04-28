@@ -73,23 +73,40 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String) {
         if (signInSuccessful) {
-            storeEmailAndPassword(this, emailString, passwordString)
+            try {
 
-            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+                storeEmailAndPassword(this, emailString, passwordString)
 
-            val bundle: Bundle = Bundle()
-            bundle.putString("email_text", emailString)
-            bundle.putString("password_text", passwordString)
+                var userprofile_intent : Intent = Intent(this,UserProfieActivity::class.java)
 
-            openHomeActivityIntent.putExtras(bundle)
+                var bundle : Bundle = Bundle()
+                bundle.putString("Username",emailString)
+                userprofile_intent.putExtras(bundle)
 
-            startActivity(openHomeActivityIntent)
-            finish()
+                startActivity(userprofile_intent)
+                finish()
 
-            Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+
+//            home page activity has been commented
+//            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+//
+//            val bundle: Bundle = Bundle()
+//            bundle.putString("email_text", emailString)
+//            bundle.putString("password_text", passwordString)
+//
+//            openHomeActivityIntent.putExtras(bundle)
+//
+//            startActivity(openHomeActivityIntent)
+//            finish()
+
+//            Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
 
         } else {
             Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
         }
     }
+
 }
