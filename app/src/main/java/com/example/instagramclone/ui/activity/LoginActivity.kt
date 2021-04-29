@@ -4,12 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.widget.SwitchCompat
 import com.example.instagramclone.R
-import com.example.instagramclone.ui.utils.checkEmailValidUsingRegex
-import com.example.instagramclone.ui.utils.checkPasswordValidUsingRegex
-import com.example.instagramclone.ui.utils.getEmailAndPassword
-import com.example.instagramclone.ui.utils.storeEmailAndPassword
+import com.example.instagramclone.ui.model.Profile
+import com.example.instagramclone.ui.model.getUserProfile
+import com.example.instagramclone.ui.utils.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -31,12 +29,13 @@ class LoginActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             val emailString: String = emailBox.text.toString()
             val passwordString: String = passwordBox.text.toString()
+            val nameString : String = "Guest"
 
 
             if (checkEmailValidUsingRegex(emailString)) {
                 if (checkPasswordValidUsingRegex(passwordString)) {
                     val signInSuccessful: Boolean = true
-                    onSignIn(signInSuccessful, emailString, passwordString)
+                    onSignIn(signInSuccessful, emailString, passwordString,nameString)
                 } else {
                     Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
                 }
@@ -56,10 +55,10 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun checkIfUserAlreadyLoggedIn() {
-        val credentials: Pair<String, String>? = getEmailAndPassword(this)
+        val credentials: Triple<String, String,String>? = getEmailAndPasswordAndName(this)
 
         if (credentials != null) {
-            onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second)
+            onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second,nameString = credentials.third)
         }
     }
 
@@ -71,25 +70,45 @@ class LoginActivity : AppCompatActivity() {
         forgotPassword = findViewById(R.id.forgot_password)
     }
 
-    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String) {
+    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String,nameString: String) {
         if (signInSuccessful) {
-            storeEmailAndPassword(this, emailString, passwordString)
+            try {
 
-            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+                storeEmailAndPasswordAndName(this, emailString, passwordString,nameString)
 
-            val bundle: Bundle = Bundle()
-            bundle.putString("email_text", emailString)
-            bundle.putString("password_text", passwordString)
+                val userProfileIntent = Intent(this,UserProfileActivity::class.java)
 
-            openHomeActivityIntent.putExtras(bundle)
+                val profile : Profile = getUserProfile(nameString,emailString)
 
-            startActivity(openHomeActivityIntent)
-            finish()
+                val bundle = Bundle()
+                bundle.putParcelable("USER_PROFILE", profile)
 
-            Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
+                userProfileIntent.putExtras(bundle)
+
+                startActivity(userProfileIntent)
+                finish()
+
+            }catch (e : Exception){
+                e.printStackTrace()
+            }
+
+//            home page activity has been commented
+//            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
+//
+//            val bundle: Bundle = Bundle()
+//            bundle.putString("email_text", emailString)
+//            bundle.putString("password_text", passwordString)
+//
+//            openHomeActivityIntent.putExtras(bundle)
+//
+//            startActivity(openHomeActivityIntent)
+//            finish()
+
+//            Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
 
         } else {
             Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
         }
     }
+
 }

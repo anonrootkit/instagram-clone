@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import com.example.instagramclone.R
-import com.example.instagramclone.ui.utils.getEmailAndPassword
+import com.example.instagramclone.ui.utils.getEmailAndPasswordAndName
 import com.example.instagramclone.ui.utils.languagelist
 
 class WelcomeActivity : AppCompatActivity() {
@@ -21,7 +21,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-        checkIfUserAlreadyLoggedIn()
+//        checkIfUserAlreadyLoggedIn()
 
         // initalise views
 
@@ -61,7 +61,7 @@ class WelcomeActivity : AppCompatActivity() {
 
     }
     private fun checkIfUserAlreadyLoggedIn() {
-        val credentials: Pair<String, String>? = getEmailAndPassword(this)
+        val credentials: Triple<String, String,String>? = getEmailAndPasswordAndName(this)
 
         if (credentials != null) {
             val intentForHomeActivity : Intent = Intent(this, HomeActivity::class.java)
