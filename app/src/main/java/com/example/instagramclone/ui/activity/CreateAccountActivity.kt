@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
 import com.example.instagramclone.R
+import com.example.instagramclone.ui.model.Profile
+import com.example.instagramclone.ui.model.getUserProfile
 import com.example.instagramclone.ui.utils.*
 
 
@@ -94,10 +96,11 @@ class CreateAccountActivity : AppCompatActivity() {
 
             val userprofile_intent : Intent = Intent(this, UserProfileActivity::class.java)
             val nameString : String = nameBox.text.toString()
+            val profile : Profile = getUserProfile(nameString,emailString)
 
             var bundle : Bundle = Bundle()
-            bundle.putString("Name",nameString)
-            bundle.putString("Username",emailString)
+            bundle.putParcelable("USER_PROFILE",profile)
+
             userprofile_intent.putExtras(bundle)
 
             startActivity(userprofile_intent)
