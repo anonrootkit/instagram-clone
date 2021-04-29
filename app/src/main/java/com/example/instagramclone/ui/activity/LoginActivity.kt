@@ -29,12 +29,13 @@ class LoginActivity : AppCompatActivity() {
         signInButton.setOnClickListener {
             val emailString: String = emailBox.text.toString()
             val passwordString: String = passwordBox.text.toString()
+            val nameString : String = "Guest"
 
 
             if (checkEmailValidUsingRegex(emailString)) {
                 if (checkPasswordValidUsingRegex(passwordString)) {
                     val signInSuccessful: Boolean = true
-                    onSignIn(signInSuccessful, emailString, passwordString)
+                    onSignIn(signInSuccessful, emailString, passwordString,nameString)
                 } else {
                     Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
                 }
@@ -54,10 +55,10 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun checkIfUserAlreadyLoggedIn() {
-        val credentials: Pair<String, String>? = getEmailAndPassword(this)
+        val credentials: Triple<String, String,String>? = getEmailAndPasswordAndName(this)
 
         if (credentials != null) {
-            onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second)
+            onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second,nameString = credentials.third)
         }
     }
 
@@ -69,14 +70,15 @@ class LoginActivity : AppCompatActivity() {
         forgotPassword = findViewById(R.id.forgot_password)
     }
 
-    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String) {
+    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String,nameString: String) {
         if (signInSuccessful) {
             try {
 
-                storeEmailAndPassword(this, emailString, passwordString)
+                storeEmailAndPasswordAndName(this, emailString, passwordString,nameString)
 
                 val userProfileIntent = Intent(this,UserProfileActivity::class.java)
-                val profile : Profile = getUserProfile(emailString)
+
+                val profile : Profile = getUserProfile(nameString,emailString)
 
                 val bundle = Bundle()
                 bundle.putParcelable("USER_PROFILE", profile)

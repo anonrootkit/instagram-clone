@@ -29,6 +29,8 @@ class CreateAccountActivity : AppCompatActivity() {
         createAccountButton.setOnClickListener {
             val emailString: String = emailBox.text.toString()
             val passwordString: String = passwordBox.text.toString()
+            val nameString: String = nameBox.text.toString()
+
 
 
             if (checkEmailValidUsingRegex(emailString)) {
@@ -36,7 +38,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (checkPasswordValidUsingRegex(passwordString)) {
 
                     val createAccountSuccessful: Boolean = true
-                    onCreateAccount(createAccountSuccessful,emailString,passwordString)
+                    onCreateAccount(createAccountSuccessful,emailString,passwordString,nameString)
 
 
                 } else {
@@ -80,9 +82,9 @@ class CreateAccountActivity : AppCompatActivity() {
 
     }
 
-    private fun onCreateAccount(isCreateAccountSuccessful: Boolean,emailString: String, passwordString: String){
+    private fun onCreateAccount(isCreateAccountSuccessful: Boolean,emailString: String, passwordString: String,nameString:String){
         if (isCreateAccountSuccessful) {
-            storeEmailAndPassword(this, emailString,passwordString)
+            storeEmailAndPasswordAndName(this, emailString,passwordString,nameString)
 
 //                        val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
 //
@@ -95,7 +97,7 @@ class CreateAccountActivity : AppCompatActivity() {
 //                        startActivity(openHomeActivityIntent)
 
             val userprofile_intent : Intent = Intent(this, UserProfileActivity::class.java)
-            val nameString : String = nameBox.text.toString()
+
             val profile : Profile = getUserProfile(nameString,emailString)
 
             var bundle : Bundle = Bundle()
