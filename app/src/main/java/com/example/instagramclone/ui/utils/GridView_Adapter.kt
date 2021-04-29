@@ -9,10 +9,8 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.instagramclone.R
+import com.example.instagramclone.ui.model.Post
 
-data class Post(
-    var postURl : String
-)
 
 class ArrayAdapter_GridView(context : Context, values: ArrayList<Post>) : ArrayAdapter<Post>(context,0,values){
     override fun getView(position: Int, initialView: View?, parent: ViewGroup): View {

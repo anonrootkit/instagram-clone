@@ -4,8 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
-import androidx.appcompat.widget.SwitchCompat
 import com.example.instagramclone.R
+import com.example.instagramclone.ui.model.Profile
+import com.example.instagramclone.ui.model.getUserProfile
 import com.example.instagramclone.ui.utils.*
 
 class LoginActivity : AppCompatActivity() {
@@ -74,15 +75,15 @@ class LoginActivity : AppCompatActivity() {
 
                 storeEmailAndPassword(this, emailString, passwordString)
 
-                var userprofile_intent : Intent = Intent(this,UserProfieActivity::class.java)
+                val userProfileIntent = Intent(this,UserProfileActivity::class.java)
+                val profile : Profile = getUserProfile(emailString)
 
-                val name: String= nameList[2]
-                var bundle : Bundle = Bundle()
-                bundle.putString("Username",emailString)
-                bundle.putString("Name",name)
-                userprofile_intent.putExtras(bundle)
+                val bundle = Bundle()
+                bundle.putParcelable("USER_PROFILE", profile)
 
-                startActivity(userprofile_intent)
+                userProfileIntent.putExtras(bundle)
+
+                startActivity(userProfileIntent)
                 finish()
 
             }catch (e : Exception){

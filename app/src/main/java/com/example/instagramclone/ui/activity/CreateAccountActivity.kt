@@ -92,7 +92,7 @@ class CreateAccountActivity : AppCompatActivity() {
 //
 //                        startActivity(openHomeActivityIntent)
 
-            val userprofile_intent : Intent = Intent(this, UserProfieActivity::class.java)
+            val userprofile_intent : Intent = Intent(this, UserProfileActivity::class.java)
             val nameString : String = nameBox.text.toString()
 
             var bundle : Bundle = Bundle()

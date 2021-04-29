@@ -1,5 +1,6 @@
 package com.example.instagramclone.ui.utils
 
+import com.example.instagramclone.ui.model.Post
 import java.util.regex.Matcher
 import java.util.regex.Pattern
 
@@ -204,7 +205,7 @@ val postList : ArrayList<String> = ArrayList<String>().apply{
 }
 
 val post : ArrayList<Post> = ArrayList<Post>().apply {
-    for(position in  0 until 20 ){
+    for(position in  0 until postList.size ){
         add(Post(postList[position]))
     }
 
