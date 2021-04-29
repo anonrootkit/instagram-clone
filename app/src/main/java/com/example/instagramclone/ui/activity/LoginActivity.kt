@@ -6,10 +6,7 @@ import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import com.example.instagramclone.R
-import com.example.instagramclone.ui.utils.checkEmailValidUsingRegex
-import com.example.instagramclone.ui.utils.checkPasswordValidUsingRegex
-import com.example.instagramclone.ui.utils.getEmailAndPassword
-import com.example.instagramclone.ui.utils.storeEmailAndPassword
+import com.example.instagramclone.ui.utils.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -79,8 +76,10 @@ class LoginActivity : AppCompatActivity() {
 
                 var userprofile_intent : Intent = Intent(this,UserProfieActivity::class.java)
 
+                val name: String= nameList[2]
                 var bundle : Bundle = Bundle()
                 bundle.putString("Username",emailString)
+                bundle.putString("Name",name)
                 userprofile_intent.putExtras(bundle)
 
                 startActivity(userprofile_intent)

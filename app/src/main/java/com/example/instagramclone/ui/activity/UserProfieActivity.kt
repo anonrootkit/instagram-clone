@@ -25,10 +25,17 @@ class UserProfieActivity : AppCompatActivity() {
         setContentView(R.layout.activity_user_profie)
         initaliseView()
 
+//        information pass from login page
         val information_from_loginpage : Bundle =intent.extras!!
         val emailString:String =information_from_loginpage.getString("Username")!!
-
         username.text=emailString
+
+//      information pass from create account page
+        val information_from_createaccountpage : Bundle =intent.extras!!
+
+        val nameString : String = information_from_createaccountpage.getString("Name")!!
+        name.text=nameString
+
 
         var adapter_obj : ArrayAdapter_GridView = ArrayAdapter_GridView(this, post)
         post_in_gridview.adapter=adapter_obj

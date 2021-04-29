@@ -92,11 +92,18 @@ class CreateAccountActivity : AppCompatActivity() {
 //
 //                        startActivity(openHomeActivityIntent)
 
-            val openListActivityIntent : Intent = Intent(this, HomeActivity::class.java)
-            startActivity(openListActivityIntent)
+            val userprofile_intent : Intent = Intent(this, UserProfieActivity::class.java)
+            val nameString : String = nameBox.text.toString()
+
+            var bundle : Bundle = Bundle()
+            bundle.putString("Name",nameString)
+            bundle.putString("Username",emailString)
+            userprofile_intent.putExtras(bundle)
+
+            startActivity(userprofile_intent)
             finish()
 
-            Toast.makeText(this, "Welcome, Welcome! Ankit.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Welcome, Welcome!", Toast.LENGTH_SHORT).show()
 
         }
 
