@@ -6,7 +6,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.example.instagramclone.R
+import com.example.instagramclone.ui.utils.checkEmailValidUsingRegex
+import com.example.instagramclone.ui.utils.checkPasswordValidUsingRegex
 import com.example.instagramclone.ui.utils.getEmailAndPasswordAndName
 import com.example.instagramclone.ui.utils.storeEmailAndPasswordAndName
 
@@ -28,17 +31,29 @@ class EditProfileActivity : AppCompatActivity() {
 
         save.setOnClickListener {
             updateNewDataInPreferences()
-            startActivity(Intent(this, UserProfileActivity::class.java))
-            finish()
+
         }
     }
 
-    private fun updateNewDataInPreferences() {
-        val newName : String = name.text.toString()
-        val newEmail : String = email.text.toString()
-        val newPassword : String = password.text.toString()
 
-        storeEmailAndPasswordAndName(this, newEmail, newPassword, newName)
+    private fun updateNewDataInPreferences() {
+
+        val newName: String = name.text.toString()
+        val newEmail: String = email.text.toString()
+        val newPassword: String = password.text.toString()
+
+        if (newName.length > 3) {
+            if (checkEmailValidUsingRegex(newEmail)) {
+                if (checkPasswordValidUsingRegex(newPassword)) {
+                    storeEmailAndPasswordAndName(this, newEmail, newPassword, newName)
+                    startActivity(Intent(this, UserProfileActivity::class.java))
+                    finish()
+                } else
+                    Toast.makeText(this, "password is invalid", Toast.LENGTH_SHORT).show()
+            } else
+                Toast.makeText(this, "email is invalid", Toast.LENGTH_SHORT).show()
+        }else
+            Toast.makeText(this, "name length should greater than 3 letter",Toast.LENGTH_SHORT).show()
     }
 
     private fun initViews(){
