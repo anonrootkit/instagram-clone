@@ -30,12 +30,13 @@ class LoginActivity : AppCompatActivity() {
             val emailString: String = emailBox.text.toString()
             val passwordString: String = passwordBox.text.toString()
             val nameString : String = "Guest"
+            val bioString : String = "No bio"
 
 
             if (checkEmailValidUsingRegex(emailString)) {
                 if (checkPasswordValidUsingRegex(passwordString)) {
                     val signInSuccessful: Boolean = true
-                    onSignIn(signInSuccessful, emailString, passwordString,nameString)
+                    onSignIn(signInSuccessful, emailString, passwordString,nameString,bioString)
                 } else {
                     Toast.makeText(this, "Invalid Password", Toast.LENGTH_SHORT).show()
                 }
@@ -55,10 +56,10 @@ class LoginActivity : AppCompatActivity() {
 
 
     private fun checkIfUserAlreadyLoggedIn() {
-        val credentials: Triple<String, String,String>? = getEmailAndPasswordAndName(this)
+        val credentials: Array<String>? = getEmailAndPasswordAndNameAndBio(this)
 
         if (credentials != null) {
-            onSignIn(signInSuccessful = true, emailString = credentials.first, passwordString = credentials.second,nameString = credentials.third)
+            onSignIn(signInSuccessful = true, emailString = credentials[0], passwordString = credentials[1],nameString = credentials[2],bioString = credentials[3])
         }
     }
 
@@ -70,9 +71,15 @@ class LoginActivity : AppCompatActivity() {
         forgotPassword = findViewById(R.id.forgot_password)
     }
 
-    private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String,nameString: String) {
+    private fun onSignIn(
+        signInSuccessful: Boolean,
+        emailString: String,
+        passwordString: String,
+        nameString: String,
+        bioString: String
+    ) {
         if (signInSuccessful) {
-            storeEmailAndPasswordAndName(this, emailString, passwordString,nameString)
+            storeEmailAndPasswordAndNameAndBio(this, emailString, passwordString,nameString,bioString)
             startActivity(Intent(this,UserProfileActivity::class.java))
             finish()
         } else {

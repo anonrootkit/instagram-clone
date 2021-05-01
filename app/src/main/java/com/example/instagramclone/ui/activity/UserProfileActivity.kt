@@ -8,10 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.instagramclone.R
 import com.example.instagramclone.ui.model.Profile
-import com.example.instagramclone.ui.utils.ArrayAdapter_GridView
-import com.example.instagramclone.ui.utils.getEmailAndPasswordAndName
-import com.example.instagramclone.ui.utils.post
-import com.example.instagramclone.ui.utils.postList
+import com.example.instagramclone.ui.utils.*
 
 class UserProfileActivity : AppCompatActivity() {
 
@@ -31,8 +28,8 @@ class UserProfileActivity : AppCompatActivity() {
         initaliseView()
 
 
-        val emailPasswordName : Triple<String, String, String> = getEmailAndPasswordAndName(this)!!
-        val profile = Profile(name = emailPasswordName.third, email = emailPasswordName.first)
+        val emailPasswordNameBio : Array<String> = getEmailAndPasswordAndNameAndBio(this)!!
+        val profile = Profile(name = emailPasswordNameBio[2], email = emailPasswordNameBio[0],bio = emailPasswordNameBio[3] )
 
         updateViewsData(profile)
 

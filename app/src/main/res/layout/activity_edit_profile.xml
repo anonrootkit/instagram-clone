@@ -19,6 +19,15 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:hint="Bio"
+        android:id="@+id/bio"
+        />
+
+    
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:hint="E-mail"
         android:id="@+id/email"
         android:layout_marginTop="8dp"

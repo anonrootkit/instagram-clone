@@ -8,17 +8,16 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.example.instagramclone.R
-import com.example.instagramclone.ui.utils.checkEmailValidUsingRegex
-import com.example.instagramclone.ui.utils.checkPasswordValidUsingRegex
-import com.example.instagramclone.ui.utils.getEmailAndPasswordAndName
-import com.example.instagramclone.ui.utils.storeEmailAndPasswordAndName
+import com.example.instagramclone.ui.utils.*
 
 class EditProfileActivity : AppCompatActivity() {
 
     private lateinit var name : EditText
     private lateinit var email : EditText
     private lateinit var password : EditText
+    private lateinit var bio : EditText
     private lateinit var save : Button
+
 
 
 
@@ -38,14 +37,15 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun updateNewDataInPreferences() {
 
-        val newName: String = name.text.toString()
+        val newName: String = name.text.toString().trim()
         val newEmail: String = email.text.toString()
         val newPassword: String = password.text.toString()
+        val newBio: String = if(bio.text.toString().trim().isEmpty()) "No bio" else bio.text.toString()
 
         if (newName.length > 3) {
             if (checkEmailValidUsingRegex(newEmail)) {
                 if (checkPasswordValidUsingRegex(newPassword)) {
-                    storeEmailAndPasswordAndName(this, newEmail, newPassword, newName)
+                    storeEmailAndPasswordAndNameAndBio(this, newEmail, newPassword, newName,newBio)
                     startActivity(Intent(this, UserProfileActivity::class.java))
                     finish()
                 } else
@@ -61,13 +61,15 @@ class EditProfileActivity : AppCompatActivity() {
         email = findViewById(R.id.email)
         password = findViewById(R.id.password)
         save = findViewById(R.id.save)
+        bio = findViewById(R.id.bio)
     }
 
     private fun initialiseStoredInformationInViews(){
-        val emailPasswordName : Triple<String, String, String> = getEmailAndPasswordAndName(this)!!
-        email.setText(emailPasswordName.first)
-        password.setText(emailPasswordName.second)
-        name.setText(emailPasswordName.third)
+        val emailPasswordNameBio : Array<String> = getEmailAndPasswordAndNameAndBio(this)!!
+        email.setText(emailPasswordNameBio[0])
+        password.setText(emailPasswordNameBio[1])
+        name.setText(emailPasswordNameBio[2])
+        bio.setText(emailPasswordNameBio[3])
     }
 
     override fun onBackPressed() {

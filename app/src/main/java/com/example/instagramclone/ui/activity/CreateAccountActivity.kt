@@ -16,6 +16,7 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var nameBox: EditText
     private lateinit var emailBox: EditText
     private lateinit var passwordBox: EditText
+    private lateinit var bioBox: EditText
     private lateinit var createAccountButton: Button
     private lateinit var signInButton: TextView
 
@@ -29,6 +30,7 @@ class CreateAccountActivity : AppCompatActivity() {
             val emailString: String = emailBox.text.toString()
             val passwordString: String = passwordBox.text.toString()
             val nameString: String = nameBox.text.toString()
+            val bioString: String = bioBox.text.toString()
 
 
 
@@ -37,7 +39,7 @@ class CreateAccountActivity : AppCompatActivity() {
                 if (checkPasswordValidUsingRegex(passwordString)) {
 
                     val createAccountSuccessful: Boolean = true
-                    onCreateAccount(createAccountSuccessful,emailString,passwordString,nameString)
+                    onCreateAccount(createAccountSuccessful,emailString,passwordString,nameString,bioString)
 
 
                 } else {
@@ -62,11 +64,18 @@ class CreateAccountActivity : AppCompatActivity() {
         passwordBox = findViewById(R.id.password)
         createAccountButton = findViewById(R.id.create_account_button)
         signInButton = findViewById(R.id.sign_in_button)
+        bioBox = findViewById(R.id.bio_create)
     }
 
-    private fun onCreateAccount(isCreateAccountSuccessful: Boolean,emailString: String, passwordString: String,nameString:String){
+    private fun onCreateAccount(
+        isCreateAccountSuccessful: Boolean,
+        emailString: String,
+        passwordString: String,
+        nameString:String,
+        bioString:String
+    ){
         if (isCreateAccountSuccessful) {
-            storeEmailAndPasswordAndName(this, emailString,passwordString,nameString)
+            storeEmailAndPasswordAndNameAndBio(this, emailString,passwordString,nameString,bioString)
             startActivity(Intent(this, UserProfileActivity::class.java))
             finish()
         }
