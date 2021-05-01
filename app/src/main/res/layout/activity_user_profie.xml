@@ -160,7 +160,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/bio_userProfile"
         android:background="@drawable/button_border"
-        android:padding="8dp"
+        app:backgroundTint="@color/black"
         android:text="Edit Profile"
         android:textColor="@color/black"
         android:textAllCaps="false" />

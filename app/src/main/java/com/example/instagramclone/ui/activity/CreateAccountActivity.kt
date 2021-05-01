@@ -18,7 +18,6 @@ class CreateAccountActivity : AppCompatActivity() {
     private lateinit var passwordBox: EditText
     private lateinit var createAccountButton: Button
     private lateinit var signInButton: TextView
-//    private lateinit var statesSpinner: Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -55,11 +54,6 @@ class CreateAccountActivity : AppCompatActivity() {
             startActivity(firstActivityIntent)
         }
 
-
-
-
-
-
     }
 
     private fun initViews(){
@@ -68,48 +62,13 @@ class CreateAccountActivity : AppCompatActivity() {
         passwordBox = findViewById(R.id.password)
         createAccountButton = findViewById(R.id.create_account_button)
         signInButton = findViewById(R.id.sign_in_button)
-//        statesSpinner = findViewById(R.id.spinner)
-
-//        initialiseSpinner(
-//            context = this,
-//            spinner = statesSpinner,
-//            values = statesList,
-//            functionOnItemSelected = { position ->
-//                Toast.makeText(this, "$position", Toast.LENGTH_SHORT).show()
-//            }
-//        )
-
-
     }
 
     private fun onCreateAccount(isCreateAccountSuccessful: Boolean,emailString: String, passwordString: String,nameString:String){
         if (isCreateAccountSuccessful) {
             storeEmailAndPasswordAndName(this, emailString,passwordString,nameString)
-
-//                        val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
-//
-//                        val bundle: Bundle = Bundle()
-//                        bundle.putString("email_text", emailString)
-//                        bundle.putString("password_text", passwordString)
-//
-//                        openHomeActivityIntent.putExtras(bundle)
-//
-//                        startActivity(openHomeActivityIntent)
-
-            val userprofile_intent : Intent = Intent(this, UserProfileActivity::class.java)
-
-            val profile : Profile = getUserProfile(nameString,emailString)
-
-            var bundle : Bundle = Bundle()
-            bundle.putParcelable("USER_PROFILE",profile)
-
-            userprofile_intent.putExtras(bundle)
-
-            startActivity(userprofile_intent)
+            startActivity(Intent(this, UserProfileActivity::class.java))
             finish()
-
-            Toast.makeText(this, "Welcome, Welcome!", Toast.LENGTH_SHORT).show()
-
         }
 
     }

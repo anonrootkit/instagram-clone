@@ -72,40 +72,9 @@ class LoginActivity : AppCompatActivity() {
 
     private fun onSignIn(signInSuccessful: Boolean, emailString: String, passwordString: String,nameString: String) {
         if (signInSuccessful) {
-            try {
-
-                storeEmailAndPasswordAndName(this, emailString, passwordString,nameString)
-
-                val userProfileIntent = Intent(this,UserProfileActivity::class.java)
-
-                val profile : Profile = getUserProfile(nameString,emailString)
-
-                val bundle = Bundle()
-                bundle.putParcelable("USER_PROFILE", profile)
-
-                userProfileIntent.putExtras(bundle)
-
-                startActivity(userProfileIntent)
-                finish()
-
-            }catch (e : Exception){
-                e.printStackTrace()
-            }
-
-//            home page activity has been commented
-//            val openHomeActivityIntent: Intent = Intent(this, HomeActivity::class.java)
-//
-//            val bundle: Bundle = Bundle()
-//            bundle.putString("email_text", emailString)
-//            bundle.putString("password_text", passwordString)
-//
-//            openHomeActivityIntent.putExtras(bundle)
-//
-//            startActivity(openHomeActivityIntent)
-//            finish()
-
-//            Toast.makeText(this, "Welcome, Welcome!.", Toast.LENGTH_SHORT).show()
-
+            storeEmailAndPasswordAndName(this, emailString, passwordString,nameString)
+            startActivity(Intent(this,UserProfileActivity::class.java))
+            finish()
         } else {
             Toast.makeText(this, "Wrong credentials!!!!", Toast.LENGTH_SHORT).show()
         }

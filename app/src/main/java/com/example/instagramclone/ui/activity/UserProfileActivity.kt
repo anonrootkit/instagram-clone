@@ -9,6 +9,7 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.instagramclone.R
 import com.example.instagramclone.ui.model.Profile
 import com.example.instagramclone.ui.utils.ArrayAdapter_GridView
+import com.example.instagramclone.ui.utils.getEmailAndPasswordAndName
 import com.example.instagramclone.ui.utils.post
 import com.example.instagramclone.ui.utils.postList
 
@@ -22,19 +23,26 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var postCount: TextView
     private lateinit var followersCount: TextView
     private lateinit var followingCount: TextView
+    private lateinit var editProfile : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profie)
         initaliseView()
 
-        val bundleFromIntent = intent.extras!!
-        val profile: Profile = bundleFromIntent.getParcelable("USER_PROFILE")!!
+
+        val emailPasswordName : Triple<String, String, String> = getEmailAndPasswordAndName(this)!!
+        val profile = Profile(name = emailPasswordName.third, email = emailPasswordName.first)
 
         updateViewsData(profile)
 
         val postsAdapter = ArrayAdapter_GridView(this, profile.postList)
         post_in_gridview.adapter = postsAdapter
+
+        editProfile.setOnClickListener {
+            startActivity(Intent(this, EditProfileActivity::class.java))
+            finish()
+        }
     }
 
     private fun updateViewsData(profile: Profile) {
@@ -57,6 +65,7 @@ class UserProfileActivity : AppCompatActivity() {
         postCount = findViewById(R.id.post_count)
         followingCount = findViewById(R.id.following_count)
         followersCount = findViewById(R.id.followers_count)
+        editProfile = findViewById(R.id.editButton_userProfile)
     }
 }
 
