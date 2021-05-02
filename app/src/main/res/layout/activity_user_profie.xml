@@ -99,7 +99,7 @@
         />
 
 
-    <TextView
+    ù<TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/following_count"
@@ -154,11 +154,22 @@
 <!--        android:layout_marginStart="40dp"-->
 <!--        />-->
 
+    <Button
+        android:id="@+id/editButton_userProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bio_userProfile"
+        android:background="@drawable/button_border"
+        app:backgroundTint="@color/black"
+        android:text="Edit Profile"
+        android:textColor="@color/black"
+        android:textAllCaps="false" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="@color/black"
-        android:layout_below="@id/bio_userProfile"
+        android:layout_below="@id/editButton_userProfile"
         android:id="@+id/seperationbar_userProfile"
         android:layout_marginTop="8dp"
         />

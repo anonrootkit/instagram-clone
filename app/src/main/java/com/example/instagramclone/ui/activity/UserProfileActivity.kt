@@ -8,9 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.instagramclone.R
 import com.example.instagramclone.ui.model.Profile
-import com.example.instagramclone.ui.utils.ArrayAdapter_GridView
-import com.example.instagramclone.ui.utils.post
-import com.example.instagramclone.ui.utils.postList
+import com.example.instagramclone.ui.utils.*
 
 class UserProfileActivity : AppCompatActivity() {
 
@@ -22,19 +20,31 @@ class UserProfileActivity : AppCompatActivity() {
     private lateinit var postCount: TextView
     private lateinit var followersCount: TextView
     private lateinit var followingCount: TextView
+    private lateinit var editProfile : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_user_profie)
         initaliseView()
 
-        val bundleFromIntent = intent.extras!!
-        val profile: Profile = bundleFromIntent.getParcelable("USER_PROFILE")!!
+
+        val emailPasswordNameBioFollowerAndFollowing : Array<String> = getEmailPasswordNameBioFollowerAndFollowing(this)!!
+        val profile = Profile(name = emailPasswordNameBioFollowerAndFollowing[2],
+            email = emailPasswordNameBioFollowerAndFollowing[0],
+            bio = emailPasswordNameBioFollowerAndFollowing[3],
+            followersCount = emailPasswordNameBioFollowerAndFollowing[4],
+            followingCount = emailPasswordNameBioFollowerAndFollowing[5]
+        )
 
         updateViewsData(profile)
 
         val postsAdapter = ArrayAdapter_GridView(this, profile.postList)
         post_in_gridview.adapter = postsAdapter
+
+        editProfile.setOnClickListener {
+            startActivity(Intent(this, EditProfileActivity::class.java))
+            finish()
+        }
     }
 
     private fun updateViewsData(profile: Profile) {
@@ -57,6 +67,7 @@ class UserProfileActivity : AppCompatActivity() {
         postCount = findViewById(R.id.post_count)
         followingCount = findViewById(R.id.following_count)
         followersCount = findViewById(R.id.followers_count)
+        editProfile = findViewById(R.id.editButton_userProfile)
     }
 }
 

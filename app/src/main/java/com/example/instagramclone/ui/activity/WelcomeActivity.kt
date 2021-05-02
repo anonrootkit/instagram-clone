@@ -21,7 +21,7 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
-//        checkIfUserAlreadyLoggedIn()
+        checkIfUserAlreadyLoggedIn()
 
         // initalise views
 
@@ -50,11 +50,13 @@ class WelcomeActivity : AppCompatActivity() {
         createraccount.setOnClickListener {
             val createraccountIntent : Intent = Intent(this, CreateAccountActivity::class.java)
             startActivity(createraccountIntent)
+            finish()
         }
 
         login.setOnClickListener {
             val loginIntent : Intent = Intent(this, LoginActivity::class.java)
             startActivity(loginIntent)
+            finish()
         }
 
 
@@ -64,8 +66,8 @@ class WelcomeActivity : AppCompatActivity() {
         val credentials: Triple<String, String,String>? = getEmailAndPasswordAndName(this)
 
         if (credentials != null) {
-            val intentForHomeActivity : Intent = Intent(this, HomeActivity::class.java)
-            startActivity(intentForHomeActivity)
+            val intentForProfileActivity : Intent = Intent(this, UserProfileActivity::class.java)
+            startActivity(intentForProfileActivity)
             finish()
         }
 
