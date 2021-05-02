@@ -10,6 +10,9 @@ private const val EMAIL_KEY = "EMAIL_KEY"
 private const val PASSWORD_KEY = "PASSWORD_KEY"
 private const val NAME_KEY = "NAME_KEY"
 private const val BIO_KEY = "BIO_KEY"
+private const val FOLLOWER_KEY = "FOLLOWER_KEY"
+private const val FOLLOWING_KEY = "FOLLOWING_KEY"
+
 
 
 private fun getDefaultSharedPreferences(context: Context) : SharedPreferences {
@@ -68,5 +71,37 @@ fun getEmailAndPasswordAndNameAndBio(context: Context) : Array<String>? {
 
 }
 
+//-------------------------------------------------------------------------------------------
+fun storeEmailAndPasswordNameBioFollowerAndFollowing(
+    context: Context,
+    emailString : String,
+    passwordString : String,
+    nameString : String,
+    bioString: String,
+    followerString: String,
+    followingtring: String
+){
+    val editablePreferences = getEditableDefaultSharedPreferences(context = context)
+    editablePreferences.putString(EMAIL_KEY, emailString)
+    editablePreferences.putString(PASSWORD_KEY, passwordString)
+    editablePreferences.putString(NAME_KEY, nameString)
+    editablePreferences.putString(BIO_KEY, bioString)
+    editablePreferences.putString(FOLLOWER_KEY, followerString)
+    editablePreferences.putString(FOLLOWING_KEY, followingtring)
 
+    editablePreferences.apply()
+}
 
+fun getEmailPasswordNameBioFollowerAndFollowing(context: Context) : Array<String>? {
+    val sharedPreferences = getDefaultSharedPreferences(context)
+
+    val emailString : String = sharedPreferences.getString(EMAIL_KEY, null) ?: return null
+    val passwordString : String = sharedPreferences.getString(PASSWORD_KEY, null) ?: return null
+    val nameString : String = sharedPreferences.getString(NAME_KEY, "Guest") ?: return null
+    val bioString: String = sharedPreferences.getString(BIO_KEY,"No bio") ?: return null
+    val followerString: String = sharedPreferences.getString(FOLLOWER_KEY,"0") ?: return null
+    val followingString: String = sharedPreferences.getString(FOLLOWING_KEY,"0") ?: return null
+
+    return arrayOf(emailString,passwordString,nameString,bioString,followerString,followingString)
+
+}

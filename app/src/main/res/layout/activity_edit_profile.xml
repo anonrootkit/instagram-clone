@@ -22,6 +22,18 @@
         android:hint="Bio"
         android:id="@+id/bio"
         />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Follower"
+        android:id="@+id/follower"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Following"
+        android:id="@+id/following"
+        />
 
     
 

@@ -15,6 +15,8 @@ class EditProfileActivity : AppCompatActivity() {
     private lateinit var name : EditText
     private lateinit var email : EditText
     private lateinit var password : EditText
+    private lateinit var following : EditText
+    private lateinit var follower : EditText
     private lateinit var bio : EditText
     private lateinit var save : Button
 
@@ -40,12 +42,21 @@ class EditProfileActivity : AppCompatActivity() {
         val newName: String = name.text.toString().trim()
         val newEmail: String = email.text.toString()
         val newPassword: String = password.text.toString()
+        val newFollower: String = follower.text.toString()
+        val newFollowing: String = following.text.toString()
         val newBio: String = if(bio.text.toString().trim().isEmpty()) "No bio" else bio.text.toString()
 
         if (newName.length > 3) {
             if (checkEmailValidUsingRegex(newEmail)) {
                 if (checkPasswordValidUsingRegex(newPassword)) {
-                    storeEmailAndPasswordAndNameAndBio(this, newEmail, newPassword, newName,newBio)
+                    storeEmailAndPasswordNameBioFollowerAndFollowing(this,
+                        newEmail,
+                        newPassword,
+                        newName,
+                        newBio,
+                        newFollower,
+                        newFollowing
+                    )
                     startActivity(Intent(this, UserProfileActivity::class.java))
                     finish()
                 } else
@@ -62,14 +73,18 @@ class EditProfileActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
         save = findViewById(R.id.save)
         bio = findViewById(R.id.bio)
+        follower = findViewById(R.id.follower)
+        following = findViewById(R.id.following)
     }
 
     private fun initialiseStoredInformationInViews(){
-        val emailPasswordNameBio : Array<String> = getEmailAndPasswordAndNameAndBio(this)!!
-        email.setText(emailPasswordNameBio[0])
-        password.setText(emailPasswordNameBio[1])
-        name.setText(emailPasswordNameBio[2])
-        bio.setText(emailPasswordNameBio[3])
+        val emailPasswordNameBioFollowerFollowing : Array<String> = getEmailPasswordNameBioFollowerAndFollowing(this)!!
+        email.setText(emailPasswordNameBioFollowerFollowing[0])
+        password.setText(emailPasswordNameBioFollowerFollowing[1])
+        name.setText(emailPasswordNameBioFollowerFollowing[2])
+        bio.setText(emailPasswordNameBioFollowerFollowing[3])
+        follower.setText(emailPasswordNameBioFollowerFollowing[4])
+        following.setText(emailPasswordNameBioFollowerFollowing[5])
     }
 
     override fun onBackPressed() {

@@ -28,8 +28,13 @@ class UserProfileActivity : AppCompatActivity() {
         initaliseView()
 
 
-        val emailPasswordNameBio : Array<String> = getEmailAndPasswordAndNameAndBio(this)!!
-        val profile = Profile(name = emailPasswordNameBio[2], email = emailPasswordNameBio[0],bio = emailPasswordNameBio[3] )
+        val emailPasswordNameBioFollowerAndFollowing : Array<String> = getEmailPasswordNameBioFollowerAndFollowing(this)!!
+        val profile = Profile(name = emailPasswordNameBioFollowerAndFollowing[2],
+            email = emailPasswordNameBioFollowerAndFollowing[0],
+            bio = emailPasswordNameBioFollowerAndFollowing[3],
+            followersCount = emailPasswordNameBioFollowerAndFollowing[4],
+            followingCount = emailPasswordNameBioFollowerAndFollowing[5]
+        )
 
         updateViewsData(profile)
 
